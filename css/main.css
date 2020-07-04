@@ -358,17 +358,33 @@ body {
 .features {
   grid-column: center-start/center-end;
   margin: 15rem 0;
-  display: -ms-grid;
+  /*
   display: grid;
-  -ms-grid-columns: (minmax(25rem, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  // grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  //makes it responsive
   grid-gap: 6rem;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
+  align-items: start;
+  //fixes different gaps between h4 and p, the default is stretch */
+}
+
+@supports (display: grid) {
+  .features {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (minmax(25rem, 1fr))[auto-fit];
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    grid-gap: 6rem;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: start;
+  }
 }
 
 .feature {
+  float: left;
+  width: 33.3333%;
+  margin-bottom: 6rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: min-content 1fr;
@@ -377,6 +393,13 @@ body {
   row-gap: 1.5rem;
   -webkit-column-gap: 2.5rem;
           column-gap: 2.5rem;
+}
+
+@supports (display: grid) {
+  .feature {
+    width: auto;
+    margin-bottom: 0;
+  }
 }
 
 .feature__icon {
